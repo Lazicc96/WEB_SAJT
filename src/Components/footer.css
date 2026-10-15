@@ -1,0 +1,331 @@
+/* ============================================================
+   INVESTFLOW — FOOTER (FULL)
+   ============================================================ */
+
+/* ============================================================
+   FOOTER WRAPPER — gradient kao sa slike
+   (tamno na vrhu → svetlo krem/narandžasto na dnu)
+   ============================================================ */
+.footer-wrapper {
+    max-width: 1460px;
+    margin: 20px auto;
+    position: relative;
+    isolation: isolate;
+    border-radius: 40px;
+    overflow: hidden;
+    color: #ffffff;
+    padding: 110px 0 40px;
+
+    background-color: #0F0F0F;
+    background-image:
+        linear-gradient(
+            180deg,
+            #0F0F0F 0%,
+            #1A0A05 8%,
+            #3D1206 18%,
+            #7A2408 30%,
+            #B8380A 44%,
+            #FD5701 58%,
+            #FF9500 70%,
+            #FFC83D 80%,
+            #FFE4A8 90%,
+            #FFF6E2 100%
+        );
+}
+
+/* suptilna grid mreža kao u headeru */
+.footer-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* ONA LINIJA NA FOOTERU ONE LINIJE KAO KORDINATNI SISTEM */
+    /* background-image:
+        linear-gradient(rgba(255, 200, 61, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 200, 61, 0.06) 1px, transparent 1px); */
+    background-size: 92px 92px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+}
+
+/* ============================================================
+   CONTAINER (isto kao u headeru)
+   ============================================================ */
+.footer-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ============================================================
+   TOP — naslov, tekst, dugme (centrirano)
+   ============================================================ */
+.footer-top {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 100px;
+}
+
+.footer-heading {
+    margin: 0 0 24px;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+.footer-subtext {
+    margin: 0 auto 36px;
+    max-width: 640px;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* primary button je već definisan u headeru — samo fallback */
+.footer-wrapper .primary-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 8px 8px 28px;
+    background-color: #FD5701;
+    border-radius: 300px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color .35s ease, transform .35s ease;
+    border: none;
+    cursor: pointer;
+}
+.footer-wrapper .primary-button:hover {
+    background-color: #D63E01;
+    transform: translateY(-1px);
+}
+
+.footer-wrapper .button-content-flex {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.footer-wrapper .button-content-flex.gap-0 { gap: 14px; }
+
+.footer-wrapper .button-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    color: #FD5701;
+    flex-shrink: 0;
+}
+
+.footer-wrapper .button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-wrapper .button-arrow {
+    transition: transform .4s cubic-bezier(.65, 0, .35, 1);
+}
+.footer-wrapper .primary-button:hover .button-arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   MIDDLE — linkovi
+   ============================================================ */
+.footer-links {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.footer-column-title {
+    margin: 0 0 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.footer-links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+}
+
+.footer-links-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-link {
+    position: relative;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: none;
+    padding-bottom: 2px;
+    transition: color .3s ease, transform .3s ease;
+}
+
+/* underline animacija */
+.footer-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform .4s cubic-bezier(.65, 0, .35, 1);
+}
+
+.footer-link:hover {
+    color: #FFC83D;
+    transform: translateX(2px);
+}
+.footer-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/* ============================================================
+   BOTTOM — copyright + more templates
+   ============================================================ */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 32px;
+}
+
+.footer-copyright {
+    margin: 0;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: -0.005em;
+}
+
+.footer-copyright-link {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: opacity .3s ease;
+}
+.footer-copyright-link:hover { opacity: 0.75; }
+
+.footer-more-templates {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: opacity .3s ease;
+}
+.footer-more-templates:hover { opacity: 0.75; }
+
+/* ============================================================
+   SCROLL REVEAL ANIMACIJE
+   ============================================================ */
+.footer-wrapper .anim-item {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity .9s cubic-bezier(.16, 1, .3, 1),
+        transform .9s cubic-bezier(.16, 1, .3, 1);
+    will-change: opacity, transform;
+}
+
+.footer-wrapper.is-visible .anim-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* stagger */
+.footer-wrapper.is-visible .footer-top .anim-item:nth-child(1) { transition-delay: .05s; }
+.footer-wrapper.is-visible .footer-top .anim-item:nth-child(2) { transition-delay: .15s; }
+.footer-wrapper.is-visible .footer-top .anim-item:nth-child(3) { transition-delay: .25s; }
+.footer-wrapper.is-visible .footer-links                       { transition-delay: .35s; }
+.footer-wrapper.is-visible .footer-bottom                      { transition-delay: .5s;  }
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤991px)
+   ============================================================ */
+@media (max-width: 991px) {
+    .footer-wrapper {
+        margin: 12px;
+        border-radius: 28px;
+        padding: 90px 0 32px;
+    }
+    .footer-container { padding: 0 24px; }
+
+    .footer-top { margin-bottom: 72px; }
+    .footer-heading { font-size: clamp(2rem, 5.5vw, 3rem); }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .footer-links-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-top: 28px;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE PORTRAIT (≤479px)
+   ============================================================ */
+@media (max-width: 479px) {
+    .footer-wrapper {
+        margin: 8px;
+        border-radius: 20px;
+        padding: 72px 0 28px;
+    }
+    .footer-container { padding: 0 20px; text-align: center;}
+
+    .footer-top { margin-bottom: 56px; }
+    .footer-heading { font-size: 1.875rem; }
+    .footer-subtext { font-size: 1rem; }
+
+    .footer-links-grid { grid-template-columns: 1fr; gap: 12px; }
+    .footer-links-list { gap: 10px; }
+
+    .footer-wrapper .primary-button { padding: 6px 6px 6px 22px; font-size: 14px; }
+    .footer-wrapper .button-icon-wrapper { width: 32px; height: 32px; }
+}

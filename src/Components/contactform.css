@@ -1,0 +1,763 @@
+/* ============================================================
+   BOOKING SECTION — Investflow
+   Čist, korporativni izgled u paleti sajta.
+   (iste klase kao do sada — JSX i logika se ne menjaju)
+   ============================================================ */
+
+.bk-page {
+  --bk-blue: #2365ff;
+  --bk-dark: #001035;
+  --bk-muted: #5c6685;
+  --bk-label: #8791ad;
+  --bk-line: #e5e9f8;
+  --bk-soft: #f4f7ff;
+  --bk-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  padding: 112px 20px 96px;
+  background: var(--bk-soft);
+  color: var(--bk-dark);
+  font-family: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.bk-page *,
+.bk-page *::before,
+.bk-page *::after {
+  box-sizing: border-box;
+}
+
+.bk-page h2,
+.bk-page h3,
+.bk-page p,
+.bk-page ul {
+  margin: 0;
+}
+
+.bk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 56px;
+  align-items: start;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* oznake iznad kolona (eyebrow) */
+.bk-tag,
+.bk-book-tag {
+  display: block;
+  margin-bottom: 26px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bk-blue);
+}
+
+.bk-info-header {
+  margin: 0;
+}
+
+/* ============================================================
+   LEVA KOLONA — informacije
+   ============================================================ */
+.bk-info {
+  padding-top: 4px;
+}
+
+.bk-features {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--bk-line);
+}
+
+.bk-feature {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 20px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--bk-line);
+}
+
+.bk-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e8efff;
+  color: var(--bk-blue);
+}
+
+/* naslov u JSX-u je pisan velikim slovima — ovde ga pretvaramo u normalnu rečenicu */
+.bk-feature-title {
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  color: var(--bk-dark);
+}
+
+.bk-feature-title::first-letter {
+  text-transform: uppercase;
+}
+
+.bk-feature-text {
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: var(--bk-muted);
+}
+
+/* --- poverljivost --- */
+.bk-confidential {
+  margin-top: 32px;
+  padding: 24px 26px;
+  border: 1px solid var(--bk-line);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.bk-conf-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--bk-dark);
+}
+
+.bk-conf-title svg {
+  color: var(--bk-blue);
+}
+
+.bk-conf-title span {
+  text-transform: lowercase;
+}
+
+.bk-conf-title span::first-letter {
+  text-transform: uppercase;
+}
+
+.bk-conf-text {
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--bk-muted);
+}
+
+.bk-conf-text strong {
+  font-weight: 600;
+  color: var(--bk-dark);
+}
+
+.bk-conf-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--bk-line);
+}
+
+.bk-conf-email {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bk-blue);
+  text-decoration: none;
+}
+
+.bk-conf-email:hover {
+  text-decoration: underline;
+}
+
+.bk-conf-arrow {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--bk-line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--bk-dark);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.bk-conf-arrow:hover {
+  border-color: var(--bk-dark);
+  background: var(--bk-dark);
+  color: #fff;
+}
+
+/* ============================================================
+   DESNA KOLONA — booking kartica
+   ============================================================ */
+.bk-book {
+  padding-top: 4px;
+}
+
+.bk-card {
+  position: relative;
+  padding: 36px 32px 24px;
+  border: 1px solid var(--bk-line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(0, 16, 53, 0.06);
+}
+
+/* mali plavi akcenat — isti kao na ostalim karticama sajta */
+.bk-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 32px;
+  width: 40px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--bk-blue);
+}
+
+.bk-host {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.bk-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bk-dark);
+  color: #fff;
+}
+
+.bk-host-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--bk-dark);
+}
+
+.bk-title {
+  margin-bottom: 16px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--bk-dark);
+}
+
+.bk-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.bk-meta li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--bk-muted);
+}
+
+.bk-meta li svg {
+  flex-shrink: 0;
+  color: var(--bk-blue);
+}
+
+/* ============================================================
+   PICKER — kalendar + info o izabranom datumu
+   ============================================================ */
+.bk-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--bk-line);
+}
+
+.bk-calendar {
+  min-width: 0;
+}
+
+.bk-cal-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.bk-cal-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--bk-dark);
+}
+
+.bk-cal-region {
+  font-size: 13px;
+  color: var(--bk-label);
+}
+
+.bk-month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.bk-month-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--bk-dark);
+}
+
+.bk-month-btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--bk-line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--bk-dark);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.bk-month-btn:hover:not(:disabled) {
+  border-color: var(--bk-blue);
+  background: #f4f7ff;
+  color: var(--bk-blue);
+}
+
+.bk-month-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.bk-weekdays,
+.bk-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.bk-weekdays {
+  margin-bottom: 6px;
+}
+
+.bk-weekday {
+  padding: 4px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bk-label);
+}
+
+.bk-day {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bk-dark);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.bk-day:hover:not(:disabled):not(.is-selected) {
+  background: #eef3ff;
+  color: var(--bk-blue);
+}
+
+.bk-day.is-today {
+  box-shadow: inset 0 0 0 1.5px var(--bk-blue);
+}
+
+.bk-day.is-selected,
+.bk-day.is-selected:hover {
+  background: var(--bk-blue);
+  color: #fff;
+  font-weight: 600;
+}
+
+.bk-day.is-disabled {
+  color: #c5cde0;
+  cursor: not-allowed;
+}
+
+.bk-day--empty {
+  pointer-events: none;
+}
+
+/* --- desna strana pickera --- */
+.bk-slots {
+  min-width: 0;
+  padding-left: 28px;
+  border-left: 1px solid var(--bk-line);
+}
+
+.bk-date-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bk-slot-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bk-slot-day-num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bk-blue);
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.bk-slot-day-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bk-label);
+}
+
+.bk-date-info-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--bk-muted);
+}
+
+.bk-date-info-text strong {
+  font-weight: 600;
+  color: var(--bk-dark);
+}
+
+.bk-slot-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  height: 100%;
+  min-height: 200px;
+  color: #aab3cb;
+}
+
+.bk-slot-empty p {
+  max-width: 190px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--bk-label);
+}
+
+/* ============================================================
+   DUGME ZA POTVRDU — pill sa belim krugom, kao ostala dugmad na sajtu
+   ============================================================ */
+.bk-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  margin-top: 24px;
+  padding: 6px 6px 6px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--bk-blue);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.bk-confirm:hover {
+  background: #1a55e0;
+}
+
+.bk-confirm svg {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  padding: 11px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--bk-blue);
+  transition: transform 0.4s var(--bk-ease);
+}
+
+.bk-confirm:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.bk-confirm:focus-visible,
+.bk-day:focus-visible,
+.bk-month-btn:focus-visible,
+.bk-conf-arrow:focus-visible,
+.bk-success-reset:focus-visible {
+  outline: 2px solid var(--bk-blue);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   USPEH
+   ============================================================ */
+.bk-success {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 16px 18px;
+  border: 1px solid #c9d6ff;
+  border-radius: 14px;
+  background: #eef3ff;
+}
+
+.bk-success-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bk-blue);
+  color: #fff;
+}
+
+.bk-success-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.bk-success-body strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--bk-dark);
+}
+
+.bk-success-body span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--bk-muted);
+}
+
+.bk-success-reset {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border: 1px solid var(--bk-dark);
+  border-radius: 999px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bk-dark);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.bk-success-reset:hover {
+  background: var(--bk-dark);
+  color: #fff;
+}
+
+/* ============================================================
+   DNO KARTICE
+   ============================================================ */
+.bk-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--bk-line);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--bk-label);
+}
+
+.bk-foot-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* ============================================================
+   MODAL — Google booking
+   ============================================================ */
+.bk-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 16, 53, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: bkModalFade 0.25s ease;
+}
+
+@keyframes bkModalFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.bk-modal {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  height: 90vh;
+  max-height: 820px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
+  animation: bkModalIn 0.35s var(--bk-ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+@keyframes bkModalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bk-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #e5e9f8;
+  border-radius: 50%;
+  background: #fff;
+  color: #001035;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 16, 53, 0.1);
+  transition: background-color 0.2s ease, transform 0.25s ease;
+}
+
+.bk-modal-close:hover {
+  background: #f4f7ff;
+  transform: rotate(90deg);
+}
+
+.bk-modal iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1199px) {
+  .bk-page { padding: 96px 20px 80px; }
+  .bk-grid { gap: 40px; }
+}
+
+@media (max-width: 991px) {
+  .bk-page { padding: 80px 16px 64px; }
+  .bk-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 767px) {
+  .bk-page { padding: 64px 14px 56px; }
+  .bk-card { padding: 32px 22px 20px; border-radius: 18px; }
+  .bk-card::before { left: 22px; }
+  .bk-title { font-size: 24px; }
+
+  .bk-picker { grid-template-columns: 1fr; gap: 24px; }
+
+  .bk-slots {
+    padding-left: 0;
+    padding-top: 22px;
+    border-left: 0;
+    border-top: 1px solid var(--bk-line);
+  }
+
+  .bk-slot-empty { min-height: 120px; }
+
+  .bk-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .bk-modal-overlay { padding: 12px; }
+  .bk-modal { height: 95vh; max-height: none; border-radius: 16px; }
+  .bk-modal-close { top: 8px; right: 8px; width: 34px; height: 34px; }
+}
+
+@media (max-width: 479px) {
+  .bk-page { padding: 56px 12px 48px; }
+  .bk-card { padding: 30px 18px 18px; }
+  .bk-card::before { left: 18px; }
+  .bk-title { font-size: 22px; }
+
+  .bk-feature { grid-template-columns: 40px minmax(0, 1fr); gap: 16px; }
+  .bk-feature-icon { width: 40px; height: 40px; }
+  .bk-feature-title { font-size: 17px; }
+
+  .bk-confidential { padding: 20px; }
+
+  .bk-confirm { font-size: 14px; padding-left: 20px; }
+
+  .bk-success { flex-direction: column; align-items: flex-start; }
+  .bk-success-reset { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-page *,
+  .bk-page *::before,
+  .bk-page *::after,
+  .bk-modal-overlay,
+  .bk-modal {
+    animation: none;
+    transition-duration: 0.01ms !important;
+  }
+}

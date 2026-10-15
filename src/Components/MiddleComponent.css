@@ -1,0 +1,254 @@
+/* =========================================================
+   VERTIKALNI TABOVI — lista usluga levo, opis desno
+   (iste klase kao do sada, JSX se ne menja)
+   ========================================================= */
+.drzac {
+  --mc-blue: #FD5701;
+  --mc-dark: #0F0F0F;
+  --mc-muted: #5C5C5C;
+  --mc-line: #F0E6DC;
+  --mc-soft: #FFF8F0;
+  --mc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  width: 100%;
+  max-width: 960px;
+  margin: 50px auto;
+  overflow: hidden;
+  border: 1px solid var(--mc-line);
+  border-radius: 20px;
+  background: #fff;
+  color: var(--mc-dark);
+  font-family: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.drzac *,
+.drzac *::before,
+.drzac *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   LISTA TABOVA (leva kolona)
+   ========================================================= */
+.line {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--mc-line);
+  background: var(--mc-soft);
+}
+
+.tab-btn {
+  width: 100%;
+  padding: 22px 28px;
+  border: 0;
+  border-bottom: 1px solid var(--mc-line);
+  background: transparent;
+  color: var(--mc-muted);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.tab-btn:last-of-type {
+  border-bottom: 0;
+}
+
+.tab-btn:hover {
+  background: rgba(253, 87, 1, 0.05);
+  color: var(--mc-dark);
+}
+
+/* aktivni tab: bela pozadina + orange linija sa leve strane */
+.tab-btn.is-active,
+.tab-btn.is-active:hover {
+  background: #fff;
+  color: var(--mc-dark);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--mc-blue);
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid var(--mc-blue);
+  outline-offset: -2px;
+}
+
+/* klizeća linija je za horizontalne tabove — ovde ne treba */
+.tab-indicator {
+  display: none;
+}
+
+/* =========================================================
+   SADRŽAJ (desna kolona)
+   ========================================================= */
+.content-tema {
+  min-height: 320px;
+  padding: 44px 48px;
+}
+
+.teme {
+  display: block;
+  animation: tab-in 0.4s var(--mc-ease);
+}
+
+.teme-number {
+  display: block;
+  margin-bottom: 12px;
+  padding: 0;
+  background: none;
+  color: var(--mc-blue);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.teme-title {
+  margin: 0 0 14px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--mc-dark);
+}
+
+.teme-text {
+  max-width: 540px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: var(--mc-muted);
+}
+
+.teme-points {
+  display: grid;
+  gap: 12px;
+  max-width: 540px;
+  margin: 26px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--mc-line);
+  list-style: none;
+}
+
+.teme-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.teme-points svg {
+  flex-shrink: 0;
+}
+
+/* običan link sa strelicom */
+.teme-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  color: var(--mc-blue);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.teme-link svg {
+  transition: transform 0.35s var(--mc-ease);
+}
+
+.teme-link:hover svg {
+  transform: translateX(4px);
+}
+
+.teme-link:focus-visible {
+  outline: 2px solid var(--mc-blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* vizuelni panel se ne koristi u ovom dizajnu */
+.teme-visual {
+  display: none;
+}
+
+@keyframes tab-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   MOBILNI — lista postaje horizontalna traka sa underline-om
+   ========================================================= */
+@media (max-width: 767px) {
+  .drzac {
+    display: block;
+    margin: 32px auto;
+    border-radius: 16px;
+  }
+
+  .line {
+    flex-direction: row;
+    gap: 24px;
+    padding: 0 20px;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--mc-line);
+    background: #fff;
+    scrollbar-width: none;
+  }
+
+  .line::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-btn {
+    flex: 0 0 auto;
+    width: auto;
+    padding: 18px 2px;
+    border-bottom: 0;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .tab-btn.is-active,
+  .tab-btn.is-active:hover {
+    background: transparent;
+    box-shadow: inset 0 -2px 0 var(--mc-blue);
+  }
+
+  .tab-btn:hover {
+    background: transparent;
+  }
+
+  .content-tema {
+    min-height: 0;
+    padding: 28px 20px 32px;
+  }
+
+  .teme-title {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teme {
+    animation: none;
+  }
+
+  .teme-link svg {
+    transition: none;
+  }
+}

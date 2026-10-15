@@ -1,0 +1,254 @@
+/* ============================================================
+   ERROR PAGE — clean & modern
+   ============================================================ */
+
+.error-page {
+    position: relative;
+    padding: 180px 0 140px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+/* suptilna mreža u pozadini */
+.error-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(0, 16, 53, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 16, 53, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, #000 0%, transparent 100%);
+}
+
+.error-page .container-default {
+    position: relative;
+    z-index: 1;
+}
+
+.error-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ---------- Veliki 404 ---------- */
+.error-code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: "Inter Tight", system-ui, sans-serif;
+    font-size: clamp(96px, 18vw, 180px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: #001035;
+    margin-bottom: 40px;
+    user-select: none;
+}
+
+.error-code > span:not(.error-code-zero) {
+    display: inline-block;
+}
+
+/* Srednja nula — krug sa animacijom */
+.error-code-zero {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.72em;
+    height: 0.72em;
+}
+
+.error-code-zero-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 0.08em solid #2365ff;
+    opacity: 0.15;
+}
+
+.error-code-zero-dot {
+    position: relative;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background: #2365ff;
+    box-shadow: 0 8px 24px rgba(35, 101, 255, 0.35);
+    animation: error-zero-pulse 2.4s cubic-bezier(.65, 0, .35, 1) infinite;
+}
+
+@keyframes error-zero-pulse {
+    0%, 100% { transform: scale(1);    opacity: 1; }
+    50%      { transform: scale(0.82); opacity: 0.85; }
+}
+
+/* ---------- Tekst ---------- */
+.error-title {
+    margin: 0 0 16px;
+    font-family: "Inter Tight", system-ui, sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: #001035;
+}
+
+.error-text {
+    margin: 0 auto;
+    max-width: 460px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #515b79;
+}
+
+/* ---------- Dugmad ---------- */
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 36px;
+}
+
+.error-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 999px;
+    font-family: "Inter Tight", system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+.error-btn-primary {
+    padding: 5px 5px 5px 24px;
+    background: #2365ff;
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(35, 101, 255, 0.25);
+}
+.error-btn-primary:hover {
+    background: #1844d6;
+    transform: translateY(-1px);
+}
+
+.error-btn-arrow {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    color: #2365ff;
+    transition: transform .4s cubic-bezier(.65, 0, .35, 1);
+}
+.error-btn-primary:hover .error-btn-arrow {
+    transform: translateX(3px);
+}
+
+.error-btn-outline {
+    padding: 15px 26px;
+    background: #fff;
+    border: 1px solid #e5e9f8;
+    color: #001035;
+}
+.error-btn-outline:hover {
+    background: #f8faff;
+    border-color: #2365ff;
+    color: #2365ff;
+}
+
+/* ---------- Hint sa linkovima ---------- */
+.error-hint {
+    margin-top: 72px;
+    padding-top: 32px;
+    border-top: 1px solid #e5e9f8;
+}
+
+.error-hint-label {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8791ad;
+}
+
+.error-hint-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.error-hint-links a {
+    color: #001035;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 2px;
+    border-bottom: 1px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+}
+
+.error-hint-links a:hover {
+    color: #2365ff;
+    border-bottom-color: #2365ff;
+}
+
+.error-hint-dot {
+    color: #c8d0e6;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 991px) {
+    .error-page { padding: 140px 0 100px; }
+    .error-code { margin-bottom: 32px; }
+    .error-hint { margin-top: 56px; }
+}
+
+@media (max-width: 767px) {
+    .error-page { padding: 120px 0 80px; }
+    .error-actions { margin-top: 28px; }
+}
+
+@media (max-width: 479px) {
+    .error-page { padding: 100px 0 64px; }
+
+    .error-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .error-btn-primary {
+        justify-content: space-between;
+    }
+
+    .error-btn-outline {
+        justify-content: center;
+    }
+
+    .error-hint-links { font-size: 14px; gap: 8px; }
+}
+
+/* Poštuj prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .error-code-zero-dot { animation: none; }
+}
