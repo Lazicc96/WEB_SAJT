@@ -56,14 +56,21 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
     },
      {
       key: "Assesments",
-      label: "Assesments",
+      label: "Assesments&Training",
       links: [
         { label: "Vulnerability Assesment", path: "/professional-services/VulnerAbility-Assesment" },
         { label: "Cloud Audit Assesment", path: "/professional-services/Cloud-Audit-Assesment" },
-        {label:"Compliance Advisory", path:"/professional-services/Compliance-Advisory"},
+        // {label:"Compliance Advisory", path:"/professional-services/Compliance-Advisory"},
         {label:"Security Awareness Training", path:"/professional-services/Sec-Awarenes-Training"}
       ],
     },
+    { key:"Compliance and advisory",
+      label:"Compliance and advisory",
+      links:[
+      {label:"Fractional Ciso",path:"/professional-services/Fractional-Ciso"},
+      {label:"Compliance readines",path:"/professional-services/Compliance-Readines"},
+      {label:"Remediation assistance as a service",path:"/professional-services/Remediation-assistance"}
+    ]},
     {
       key: "incident",
       label: "Incident Response",
@@ -72,7 +79,8 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
     {key:"Digital Forensic",
       label:"Ditigal Forensic",
       path:"/professional-services/Digital-Forensic"
-    }
+    },
+    
 
     
   ];
@@ -251,8 +259,8 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
         <header ref={headerRef} className={headerClass}>
           <div className="header-inner">
             <Link to={ruta} className="header-logo-link" onClick={closeAll} aria-label="Investflow — početna">
-              <img className="header-logo-white" src="/src/assets/LOGOGAGI.png" alt="" />
-              <img className="header-logo-dark" src="/images/logo-dark.svg" alt="" aria-hidden="true" />
+              <img className="header-logo-white" src="/src/assets/logo-gagi-light.png" alt="" />
+              <img className="header-logo-dark" src="/images/logo-gagi-dark.png" alt="" aria-hidden="true" />
             </Link>
 
             <div className="header-right">
@@ -392,11 +400,6 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
                   </li>
 
                   {/* ---------- 4. PORTFOLIO ---------- */}
-                  <li className="nav-item">
-                    <Link to="/portfolio-pages/portfolio-v1" className="nav-link" onClick={closeAll}>
-                      <span className="link-animation-wrapper"><span className="link-swap-a">Portfolio</span><span className="link-swap-b" aria-hidden="true">Portfolio</span></span>
-                    </Link>
-                  </li>
                 </ul>
               </nav>
 

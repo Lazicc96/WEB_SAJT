@@ -87,7 +87,7 @@ body.menu-open {
 }
 
 /* =========================================================
-   LOGO
+   LOGO — dve verzije: bela (za tamnu pozadinu) i tamna (za svetlu)
    ========================================================= */
 .header-logo-link {
   display: inline-flex;
@@ -102,12 +102,18 @@ body.menu-open {
   width: auto;
 }
 
-.header-logo-dark {
-  display: none;
-}
+/* Podrazumevano: prikazuj BELI logo (transparent header je iznad tamnog hero-a) */
+.header-logo-white { display: block; }
+.header-logo-dark  { display: none;  }
 
+/* Kad je header na svetloj stranici (klasa .header-light) i NIJE sticky:
+   prikaži TAMNI logo (crni tekst + orange ikonica) */
 .header.header-light:not(.is-sticky) .header-logo-white { display: none; }
 .header.header-light:not(.is-sticky) .header-logo-dark  { display: block; }
+
+/* Kad je sticky, uvek koristi BELI logo (jer je sticky pozadina tamna) */
+.header.is-sticky .header-logo-white { display: block; }
+.header.is-sticky .header-logo-dark  { display: none;  }
 
 /* =========================================================
    DESNA STRANA + NAV

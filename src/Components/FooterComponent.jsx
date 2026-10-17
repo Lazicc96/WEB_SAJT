@@ -17,27 +17,59 @@ const ArrowRight = () => (
 );
 
 /* ============================================================
-   Podaci
+   Podaci — kolone footera (naslov + linkovi)
+   Putanje moraju da se poklapaju sa routerom / HEADER_IMAGES
    ============================================================ */
-const MAIN_PAGES_LEFT = [
-    { href: "/", label: "Home" },
-    { href: "/contact", label: "Contact" },
-    { href: "/aboutUs", label: "About us" },
-    { href: "/", label: "neki route" },
-];
-
-const MAIN_PAGES_RIGHT = [
-    { href: "/company-pages/contact", label: "Contact" },
-    { href: "/company-pages/investors", label: "Investors" },
-    { href: "/investors/john-carter", label: "Investor single" },
-    { href: "/company-pages/coming-soon", label: "Coming soon" },
-];
-
-const UTILITY_PAGES = [
-    { href: "/contact", label: "Contact us" },
-    { href: "/sign-up", label: "Sign up" },
-    { href: "/reset-password", label: "Reset password" },
-    { href: "/update-password", label: "Update password" },
+const FOOTER_COLUMNS = [
+    {
+        title: "Penetration Testing",
+        links: [
+            { href: "/professional-services/web-application-pen-testing", label: "Web Application Pen Testing" },
+            { href: "/professional-services/external-network-pen-testing", label: "External Network Pen Testing" },
+            { href: "/professional-services/internal-network-pen-testing", label: "Internal Network Pen Testing" },
+            { href: "/professional-services/llm-ai-pen-testing", label: "LLM & AI Pen Testing" },
+            { href: "/professional-services/social-engineering", label: "Social Engineering" },
+            { href: "/professional-services/red-team-ops", label: "Red Team Ops" },
+            { href: "/professional-services/iot-hardware-hacking", label: "IoT & Hardware Hacking" },
+        ],
+    },
+    {
+        title: "Assessments & Training",
+        links: [
+            { href: "/professional-services/vulnerability-assesment", label: "Vulnerability Assessment" },
+            { href: "/professional-services/cloud-audit-assesment", label: "Cloud Audit Assessment" },
+            { href: "/professional-services/network-assessment", label: "Network Assessment" },
+            { href: "/professional-services/api-security-assessment", label: "API Security Assessment" },
+            { href: "/professional-services/physical-security-systems-assessment", label: "Physical Security Assessment" },
+            { href: "/professional-services/sec-awarenes-training", label: "Security Awareness Training" },
+            { href: "/professional-services/training-user-awareness", label: "User Awareness Training" },
+            { href: "/professional-services/training-phishing-exercises", label: "Phishing Exercises" },
+            { href: "/professional-services/training-tabletop-exercise", label: "Tabletop Exercise" },
+        ],
+    },
+    {
+        title: "Compliance & Response",
+        links: [
+            { href: "/professional-services/fractional-ciso", label: "Fractional CISO" },
+            { href: "/professional-services/vciso-service", label: "vCISO Service" },
+            { href: "/professional-services/compliance-readines", label: "Compliance Readiness" },
+            { href: "/professional-services/skyrocket-accelerated-gap-analysis", label: "Accelerated Gap Analysis" },
+            { href: "/professional-services/policy-development", label: "Policy Development" },
+            { href: "/professional-services/remediation-assistance", label: "Remediation Assistance" },
+            { href: "/professional-services/solution-implementation-cybersecurity", label: "Solution Implementation" },
+            { href: "/professional-services/incident-response", label: "Incident Response" },
+            { href: "/professional-services/compromise-assessment", label: "Compromise Assessment" },
+            { href: "/professional-services/digital-forensic", label: "Digital Forensics" },
+        ],
+    },
+    {
+        title: "Company",
+        links: [
+            { href: "/", label: "Home" },
+            { href: "/managed-services", label: "Managed Services" },
+            { href: "/contact", label: "Contact Us" },
+        ],
+    },
 ];
 
 /* ============================================================
@@ -76,15 +108,14 @@ export default function FooterComponent() {
                 {/* ============ TOP — heading + text + CTA ============ */}
                 <div className="footer-top">
                     <h2 className="footer-heading anim-item">
-                        We invest in AI companies<br />
-                        shaping the future
+                        Start your security journey today
                     </h2>
 
-                    <p className="footer-subtext anim-item">
+                    {/* <p className="footer-subtext anim-item">
                         Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis
                         pharetra arcu id amet et vehicula a eget facilisis nec porta interdum
                         lorem pharetra proin ac lacus.
-                    </p>
+                    </p> */}
 
                     <div className="anim-item">
                         <Link to="/get-started" className="primary-button">
@@ -100,22 +131,11 @@ export default function FooterComponent() {
 
                 {/* ============ MIDDLE — linkovi ============ */}
                 <div className="footer-links anim-item">
-
-                    {/* Main pages */}
-                    <div className="footer-column">
-                        <h4 className="footer-column-title">Main pages</h4>
-                        <div className="footer-links-grid">
+                    {FOOTER_COLUMNS.map((col) => (
+                        <div className="footer-column" key={col.title}>
+                            <h4 className="footer-column-title">{col.title}</h4>
                             <ul className="footer-links-list">
-                                {MAIN_PAGES_LEFT.map((l) => (
-                                    <li key={l.href}>
-                                        <Link to={l.href} className="footer-link">
-                                            <span>{l.label}</span>
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                            <ul className="footer-links-list">
-                                {MAIN_PAGES_RIGHT.map((l) => (
+                                {col.links.map((l) => (
                                     <li key={l.href}>
                                         <Link to={l.href} className="footer-link">
                                             <span>{l.label}</span>
@@ -124,21 +144,7 @@ export default function FooterComponent() {
                                 ))}
                             </ul>
                         </div>
-                    </div>
-
-                    {/* Utility pages */}
-                    <div className="footer-column">
-                        <h4 className="footer-column-title">Utility pages</h4>
-                        <ul className="footer-links-list">
-                            {UTILITY_PAGES.map((l) => (
-                                <li key={l.href}>
-                                    <Link to={l.href} className="footer-link">
-                                        <span>{l.label}</span>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    ))}
                 </div>
 
                 {/* ============ BOTTOM — copyright ============ */}

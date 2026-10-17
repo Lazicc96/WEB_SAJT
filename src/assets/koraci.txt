@@ -1,9 +1,18 @@
-1.U navbaru preimenovati Assesments u Assesments&Training
-2.Ispod Compliance and advisory
-drop down:
-Fractional Ciso
-Compliance readines
-Remediation assistance as a service- Coming soon
-3.Portfolio da izbrisem u nav baru
-Start your security journey today - Footer glavni head tekst
-Ispod heading teksta - da se brise paragraf
+1.U navbaru preimenovati Assesments u Assesments&Training ----- URADJENO
+2.Ispod Compliance and advisory ----- URADJENO
+drop down: ----- URADJENO
+Fractional Ciso ----- URADJENO
+Compliance readines ----- URADJENO
+Remediation assistance as a service - Coming soon(Nova stranica) ----- URADJENO
+3.Portfolio da izbrisem u nav baru ----- URADJENO
+Start your security journey today ----- Footer glavni head tekst ----- URADJENO
+Ispod heading teksta - da se brise paragraf ----- Uradjeno
+4. Promeni boje na sajtu ----- URADJENO
+5. Dodaj logo(dark i light) ----- URADJENO
+6. Pushovati na GitHub -- URADJENO
+7. Dodate boje nove prema logu ----- URADJENO
+
+NOVO: 
+OSTALO JE IZMENITI IKONICE -- URADJENO
+I TEKSTOVE NA NOVIM STRANICAMA U TAB BAROVIMA 
+I FOOTER PUTANJE DA SE IZMENE RUTE STRANICA SAMO I NAZIV

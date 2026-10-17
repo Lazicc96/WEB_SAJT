@@ -16,6 +16,9 @@ import Compliance_Advisory from "./Components/Compliance-Advisory"
 import Sec_Awarenes_Training from "./Components/Security_Awarenes_Training"
 import Incident_Response from "./Components/Incident_Response"
 import Ditigal_Forensic from "./Components/Ditigal_Forensic"
+import RemediationAssistance from "./Components/Remediation-Assistance"
+import FractionalCiso from "./Components/Fractional-Ciso"
+import Compliance_Readines from "./Components/Compliance-readines"
 
 
 // element that should be loaded when route is active
@@ -52,6 +55,10 @@ const router = createBrowserRouter([
           { path: "Incident-Response", element: <Incident_Response/> },
           { path: "Digital-Forensic", element: <Ditigal_Forensic/> },
           { path: "training-phishing-exercises", element: "" },
+
+          { path: "Remediation-assistance", element: <RemediationAssistance/> },
+          { path: "Fractional-Ciso", element: <FractionalCiso/> },
+          { path: "Compliance-Readines", element: <Compliance_Readines/> },
 
   ]},
   {path:'/managed-services',element:'',children:[

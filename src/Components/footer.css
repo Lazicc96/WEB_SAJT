@@ -147,6 +147,7 @@
    MIDDLE — linkovi
    ============================================================ */
 .footer-links {
+    text-align: center;
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 60px;
