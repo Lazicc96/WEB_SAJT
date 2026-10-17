@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./homesections.css";
+import { FAQ_ITEMS } from "./faqItems";
 
 // Slike su iz originalnog template-a (isti CDN kao u tvom HTML-u)
 const CDN = "https://cdn.prod.website-files.com/686b7d020ea82bd1ba5003a8/";
@@ -384,36 +385,18 @@ function HomeSections() {
             <PrimaryButton to="/contact">Contact Us</PrimaryButton>
           </Reveal>
 
-          <div className="hs-faq-list">
-            <FaqItem
-              number="01"
-              title="Are you actively doing investments?"
-              text="Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis pharetra arcu id amet et vehicula a eget facilisis nec porta interdum lorem pharetra."
-              open={openFaq === 0}
-              onToggle={() => toggleFaq(0)}
-            />
-            <FaqItem
-              number="02"
-              title="What is the typical investment amount?"
-              text="Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis pharetra arcu id amet et vehicula a eget facilisis nec porta interdum lorem pharetra."
-              open={openFaq === 1}
-              onToggle={() => toggleFaq(1)}
-            />
-            <FaqItem
-              number="03"
-              title="How can we get in touch to pitch our company?"
-              text="Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis pharetra arcu id amet et vehicula a eget facilisis nec porta interdum lorem pharetra."
-              open={openFaq === 2}
-              onToggle={() => toggleFaq(2)}
-            />
-            <FaqItem
-              number="04"
-              title="Are you open to partnership?"
-              text="Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis pharetra arcu id amet et vehicula a eget facilisis nec porta interdum lorem pharetra."
-              open={openFaq === 3}
-              onToggle={() => toggleFaq(3)}
-            />
-          </div>
+         <div className="hs-faq-list">
+  {FAQ_ITEMS.map((item, i) => (
+    <FaqItem
+      key={item.q}
+      number={String(i + 1).padStart(2, "0")}
+      title={item.q}
+      text={item.a}
+      open={openFaq === i}
+      onToggle={() => toggleFaq(i)}
+    />
+  ))}
+</div>
         </div>
       </section>
     </div>
