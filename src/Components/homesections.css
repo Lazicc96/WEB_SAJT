@@ -263,8 +263,22 @@
 }
 
 .hs-pcard-logo {
-  width: 56px;
-  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: #FFF8F0; /* Krem pozadina */
+  border: 1px solid #F0E6DC; /* Blaga ivica */
+  border-radius: 16px;       /* Zaobljeni ćoškovi */
+  margin-bottom: 24px;       /* Odmak od teksta ispod */
+}
+
+/* Osigurava da se SVG ne razvlači */
+.hs-pcard-logo svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
 }
 
 .hs-pcard-title {
@@ -544,6 +558,10 @@
 .hs-cta-bg {
   position: absolute;
   inset: 0;
+}
+
+.hs-cta-bg img {
+  filter: hue-rotate(160deg) saturate(1.25);
 }
 
 .hs-cta-bg img {

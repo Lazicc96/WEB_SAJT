@@ -3,16 +3,84 @@ import { Link } from "react-router-dom";
 import "./homesections.css";
 import { FAQ_ITEMS } from "./faqItems";
 
-// Slike su iz originalnog template-a (isti CDN kao u tvom HTML-u)
+
+// Slike iz originalnog template-a
 const CDN = "https://cdn.prod.website-files.com/686b7d020ea82bd1ba5003a8/";
 const CDN_PORTFOLIO = "https://cdn.prod.website-files.com/686b7d020ea82bd1ba5003b1/";
-const QUOTE_ICON = CDN + "686d8611ca20e232f338016a_quote-icon-equity-webflow-template.svg";
 
-/* =========================================================
-   POMOĆNE KOMPONENTE
-   ========================================================= */
 
-// Scroll reveal (fade + slide up) — zamena za .anim-fade-up iz originalnog skripta
+// ==========================================
+// PORTFOLIO IKONICE (Male, čiste, Flaticon stil)
+// ==========================================
+
+const IconDiscovery = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FD5701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+);
+
+const IconTesting = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FD5701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <circle cx="12" cy="12" r="6"></circle>
+    <circle cx="12" cy="12" r="2"></circle>
+  </svg>
+);
+
+const IconProtection = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FD5701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    <path d="M9 12l2 2 4-4"></path>
+  </svg>
+);
+
+
+
+/* 
+   IKONICE — "Industries we secure"
+   */
+const IND_PROPS = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  width: 26,
+  height: 26,
+  "aria-hidden": "true",
+};
+
+const IconFinance = () => (
+  <svg {...IND_PROPS}>
+    <path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18" />
+  </svg>
+);
+const IconCloud = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FD5701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+  </svg>
+);
+const IconHealth = () => (
+  <svg {...IND_PROPS}>
+    <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+    <path d="M12 9v6M9 12h6" />
+  </svg>
+);
+const IconShop = () => (
+  <svg {...IND_PROPS}>
+    <path d="M3 4h2l2.5 11h10L20 7H6.5" />
+    <circle cx="9" cy="20" r="1" />
+    <circle cx="17" cy="20" r="1" />
+  </svg>
+);
+
+/* 
+   POMOCNE KOMPONENTE
+    */
+
+// Scroll reveal (fade + slide up)
 function Reveal({ children, className = "", delay = 0 }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -86,7 +154,7 @@ function PortfolioCard({ to, logo, name, text, badge, year }) {
       <span className="hs-pcard-bg" aria-hidden="true"></span>
       <span className="hs-pcard-content">
         <span>
-          <img className="hs-pcard-logo" src={logo} alt={name} loading="lazy" width="64" height="64" />
+          {logo}
           <h3 className="hs-pcard-title">{name}</h3>
           <p className="hs-pcard-text">{text}</p>
         </span>
@@ -102,8 +170,8 @@ function PortfolioCard({ to, logo, name, text, badge, year }) {
   );
 }
 
-// Tab iz sekcije "Our approach" (accordion)
-function ApproachTab({ title, text, image, number, open, onSelect }) {
+// Tab iz sekcije "Our approach" (accordion) — SVG ikona umesto slike
+function ApproachTab({ title, text, icon, number, open, onSelect }) {
   const onKey = (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -128,12 +196,24 @@ function ApproachTab({ title, text, image, number, open, onSelect }) {
       <div className="hs-collapse">
         <div className="hs-collapse-inner">
           <p className="hs-tab-text">{text}</p>
-          <span className="hs-link">
+          <Link to="/contact" className="hs-link" onClick={(e) => e.stopPropagation()}>
             <span>Learn more</span>
             <ChevronRight />
-          </span>
+          </Link>
           <div className="hs-tab-image">
-            <img src={image} alt={title} loading="lazy" />
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                minHeight: 240,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#FD5701",
+              }}
+            >
+              <div style={{ width: 150, height: 150 }}>{icon}</div>
+            </div>
             <span className="hs-tab-number">{number}</span>
           </div>
         </div>
@@ -192,11 +272,9 @@ function FaqItem({ number, title, text, open, onToggle }) {
   );
 }
 
-/* =========================================================
+/* 
    GLAVNA KOMPONENTA
-   Napomena: "About us" i uvod "Investment highlights" su već u HeaderComponent,
-   pa ova komponenta počinje od kartica portfolija.
-   ========================================================= */
+    */
 function HomeSections() {
   const [activeTab, setActiveTab] = useState(0); // koji tab je otvoren u "Our approach"
   const [openFaq, setOpenFaq] = useState(0); // koji FAQ je otvoren (null = nijedan)
@@ -205,48 +283,48 @@ function HomeSections() {
 
   return (
     <div className="hs-root">
-      {/* ================= INVESTMENT HIGHLIGHTS — kartice ================= */}
+      {/*  INVESTMENT HIGHLIGHTS — kartice  */}
       <section className="hs-section hs-cards-section">
         <div className="hs-container">
           <Reveal className="hs-cards-grid">
             <PortfolioCard
-              to="/portfolio/converra"
-              logo={CDN_PORTFOLIO + "686bf9992d7e4e9f2a1a1dbc_converra-logo-equity-webflow-template.svg"}
-              name="Converra"
-              text="Lorem ipsum dolor sit amet consectetur nibh nunc luctus iaculis posuere adipiscing platea tortor magna orci netus."
-              badge="Q2 2026"
-              year="2026"
-            />
-            <PortfolioCard
-              to="/portfolio/nexora"
-              logo={CDN_PORTFOLIO + "686bf9623211842a0ab26d79_nexora-logo-equity-webflow-template.svg"}
-              name="Nexora"
-              text="Lorem ipsum dolor sit amet consectetur nibh nunc luctus iaculis posuere adipiscing platea tortor magna orci netus."
-              badge="Q3 2025"
-              year="2025"
-            />
-            <PortfolioCard
-              to="/portfolio/syncell"
-              logo={CDN_PORTFOLIO + "686bf9435ad0d20e7248c08a_syncell-logo-equity-webflow-template.svg"}
-              name="Syncell"
-              text="Lorem ipsum dolor sit amet consectetur nibh nunc luctus iaculis posuere adipiscing platea tortor magna orci netus."
-              badge="Q1 2024"
-              year="2024"
-            />
+  to="/contact"
+  logo={<IconCloud/>}
+  name="Converra"
+  text="Full-spectrum external footprint mapping and attack surface analysis. We identified exposed assets before malicious actors could exploit them."
+  badge="Q2 2026"
+  year="2026"
+/>
+<PortfolioCard
+  to="/contact"
+  logo={<IconTesting />}
+  name="Nexora"
+  text="In-depth web application penetration testing and secure code review. We safely exploited critical flaws prior to their major product launch."
+  badge="Q3 2025"
+  year="2025"
+/>
+<PortfolioCard
+  to="/contact"
+  logo={<IconProtection />}
+  name="Syncell"
+  text="Cloud infrastructure audit and zero-trust policy implementation. Hardened their environment to meet strict financial data compliance standards."
+  badge="Q1 2024"
+  year="2024"
+/>
           </Reveal>
         </div>
       </section>
 
-      {/* ================= OUR APPROACH ================= */}
+      {/*  OUR APPROACH  */}
       <div className="hs-wrap">
         <section className="hs-panel">
           <div className="hs-approach-grid">
             <Reveal className="hs-approach-left">
-              <p className="hs-label">Our process</p>
+              <p className="hs-label">How we work</p>
               <h2 className="hs-title">Our approach</h2>
               <p className="hs-text hs-approach-text">
-                Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis pharetra arcu id amet et
-                vehicula a eget.
+                Every engagement follows the same three steps, so you always know what is happening,
+                what it will take and what you get at the end.
               </p>
               <div className="hs-actions-left">
                 <PrimaryButton to="/contact">Get started</PrimaryButton>
@@ -256,24 +334,24 @@ function HomeSections() {
             <Reveal className="hs-tabs" delay={120}>
               <ApproachTab
                 title="Discovery"
-                text="Lorem ipsum dolor sit amet consectetur nibh nunc luctus iaculis posuere adipiscing."
-                image={CDN + "686d2789c769c320447ba2d8_discovery-equity-webflow-template.jpg"}
+                text="We learn your systems, risks and business priorities, then agree on scope and rules of engagement before anything is tested."
+                icon={<IconDiscovery />}
                 number="01"
                 open={activeTab === 0}
                 onSelect={() => setActiveTab(0)}
               />
               <ApproachTab
-                title="Research"
-                text="Lorem ipsum dolor sit amet consectetur nibh nunc luctus iaculis posuere adipiscing."
-                image={CDN + "686d2789d5c2ffb3eb54e8fb_research-equity-webflow-template.jpg"}
+                title="Testing"
+                text="Our team attacks the way a real adversary would, mostly by hand, and proves every weakness with evidence instead of scanner noise."
+                icon={<IconTesting />}
                 number="02"
                 open={activeTab === 1}
                 onSelect={() => setActiveTab(1)}
               />
               <ApproachTab
-                title="Investment"
-                text="Lorem ipsum dolor sit amet consectetur nibh nunc luctus iaculis posuere adipiscing."
-                image={CDN + "686d27952ceafd7ef3fa1388_investment-equity-webflow-template.jpg"}
+                title="Protection"
+                text="You get a clear report with fix steps, and we help close the gaps and retest, so the problems are solved and not only documented."
+                icon={<IconProtection />}
                 number="03"
                 open={activeTab === 2}
                 onSelect={() => setActiveTab(2)}
@@ -283,7 +361,7 @@ function HomeSections() {
         </section>
       </div>
 
-      {/* ================= INDUSTRIES WE INVEST IN ================= */}
+      {/*  INDUSTRIES WE SECURE  */}
       <section className="hs-industries">
         <img
           className="hs-inv-bg"
@@ -297,30 +375,26 @@ function HomeSections() {
           <div className="hs-inv-top">
             <div className="hs-inv-cell">
               <div className="hs-inv-card">
-                <span className="hs-inv-icon">
-                  <img src={CDN + "686b903254105547e3a18c0f_automation-icon-equity-webflow-template.svg"} alt="" />
-                </span>
-                <span>AI Automation</span>
+                <span className="hs-inv-icon"><IconFinance /></span>
+                <span>Finance & Fintech</span>
               </div>
               <span className="hs-inv-square hs-sq-1" aria-hidden="true"></span>
             </div>
             <div className="hs-inv-cell hs-inv-cell-raised">
               <div className="hs-inv-card">
-                <span>AI Infrastructure</span>
-                <span className="hs-inv-icon">
-                  <img src={CDN + "686b9035a5b90558f5d460f3_infrastructure-icon-equity-webflow-template.svg"} alt="" loading="lazy" />
-                </span>
+                <span>SaaS & Cloud</span>
+                <span className="hs-inv-icon"><IconCloud /></span>
               </div>
               <span className="hs-inv-square hs-sq-2" aria-hidden="true"></span>
             </div>
           </div>
 
           <Reveal className="hs-inv-center">
-            <p className="hs-label">Our investments</p>
-            <h2 className="hs-title">Industries we invest in</h2>
+            <p className="hs-label">Who we protect</p>
+            <h2 className="hs-title">Industries we secure</h2>
             <p className="hs-text hs-center-text">
-              Lorem ipsum dolor sit amet consectetur lacus sed nam varius quis pharetra arcu id amet et vehicula
-              a eget facilisis nec porta interdum lorem pharetra.
+              Different industries face different attackers and different regulations. We adapt the
+              testing, the reporting and the advice to the risks that matter in yours.
             </p>
             <div className="hs-actions-center">
               <PrimaryButton to="/contact">Get started</PrimaryButton>
@@ -330,19 +404,15 @@ function HomeSections() {
           <div className="hs-inv-bottom">
             <div className="hs-inv-cell">
               <div className="hs-inv-card">
-                <span>Generative AI</span>
-                <span className="hs-inv-icon">
-                  <img src={CDN + "686b903275247e0631b98f4b_generative-ai-icon-equity-webflow-template.svg"} alt="" loading="lazy" />
-                </span>
+                <span>Healthcare</span>
+                <span className="hs-inv-icon"><IconHealth /></span>
               </div>
               <span className="hs-inv-square hs-sq-3" aria-hidden="true"></span>
             </div>
             <div className="hs-inv-cell">
               <div className="hs-inv-card">
-                <span className="hs-inv-icon">
-                  <img src={CDN + "686b90323caf6fdccb51962c_healthcare-icon-equity-webflow-template.svg"} alt="" loading="lazy" />
-                </span>
-                <span>Healthcare AI</span>
+                <span className="hs-inv-icon"><IconShop /></span>
+                <span>E-commerce</span>
               </div>
               <span className="hs-inv-square hs-sq-4" aria-hidden="true"></span>
             </div>
@@ -350,10 +420,10 @@ function HomeSections() {
         </div>
       </section>
 
-      {/* ================= CTA ================= */}
+      {/*  CTA  */}
       <div className="hs-wrap">
         <section className="hs-cta">
-          <div className="hs-cta-bg" aria-hidden="true">
+          <div className="hs-cta-bg cta-orange.css" aria-hidden="true">
             <img
               src={CDN + "686d64b6b73715c8c3dcfd5c_cta-v1-bg-equity-webflow-template.jpg"}
               alt=""
@@ -362,10 +432,10 @@ function HomeSections() {
           </div>
           <Reveal className="hs-cta-content">
             <p className="hs-cta-label">Get in touch</p>
-            <h2 className="hs-title hs-title-light">Backing AI companies shaping tomorrow</h2>
+            <h2 className="hs-title hs-title-light">Find your weak spots before attackers do</h2>
             <p className="hs-text hs-text-light hs-cta-text">
-              Lorem ipsum dolor sit amet consectetur tortor at integer ultricies etiam velit rhoncus pharetra
-              vitae nulla in pellentesque tempus.
+              Tell us what you need to protect and we will come back with a clear scope, a timeline
+              and a fixed price, with no sales pitch and no jargon.
             </p>
             <div className="hs-actions-left">
               <PrimaryButton to="/contact">Get started</PrimaryButton>
@@ -374,7 +444,7 @@ function HomeSections() {
         </section>
       </div>
 
-      {/* ================= FAQ ================= */}
+      {/* FAQ  */}
       <section className="hs-section hs-faq-section">
         <div className="hs-container">
           <Reveal className="hs-title-row">
@@ -385,18 +455,18 @@ function HomeSections() {
             <PrimaryButton to="/contact">Contact Us</PrimaryButton>
           </Reveal>
 
-         <div className="hs-faq-list">
-  {FAQ_ITEMS.map((item, i) => (
-    <FaqItem
-      key={item.q}
-      number={String(i + 1).padStart(2, "0")}
-      title={item.q}
-      text={item.a}
-      open={openFaq === i}
-      onToggle={() => toggleFaq(i)}
-    />
-  ))}
-</div>
+          <div className="hs-faq-list">
+            {FAQ_ITEMS.map((item, i) => (
+              <FaqItem
+                key={item.q}
+                number={String(i + 1).padStart(2, "0")}
+                title={item.q}
+                text={item.a}
+                open={openFaq === i}
+                onToggle={() => toggleFaq(i)}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </div>

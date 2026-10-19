@@ -266,7 +266,7 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
             <div className="header-right">
               <nav className={`nav-menu ${isMobileMenuOpen ? "is-open" : ""}`} aria-label="Glavna navigacija">
                 <ul className="nav-list">
-                  {/* ---------- 1. PROFESSIONAL SERVICES ---------- */}
+                  {/* PROFESSIONAL SERVICES  */}
                   <li
                     className={`nav-item nav-item-pro ${isProOpen ? "is-open" : ""}`}
                     onMouseEnter={handleProEnter}

@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./MiddleComponent.css";
+import { getPageTabs } from "./pageTabs"; // prilagodi putanju
 
-// Primer podataka — na svakoj stranici prosleđuješ svoj niz kroz prop "tabs"
-const DEFAULT_TABS = [
-  { title: "Assessments", text: "Procena stanja sistema, mreže i aplikacija — gde su slabe tačke i šta prvo popraviti." },
-  { title: "Advisory", text: "Strateško savetovanje, politike i vCISO podrška za tim koji nema svog stručnjaka." },
-  { title: "Training", text: "Obuke, tabletop vežbe i simulacije phishing napada za zaposlene." },
-];
-
-function MiddleComponent({ tabs = DEFAULT_TABS }) {
+function MiddleComponent({ tabs }) {
+  const { pathname } = useLocation();
+  const data = tabs ?? getPageTabs(pathname);
   const [selected, setSelected] = useState(0);
-  const active = tabs[selected];
+
+  // nova stranica = uvek krećemo od prvog taba
+  useEffect(() => {
+    setSelected(0);
+  }, [pathname]);
+
+  const active = data[selected] ?? data[0];
+  const pad = (n) => String(n).padStart(2, "0");
 
   return (
-    <div className="drzac">
-      {/* Dugmad (pill tabovi) */}
-      <div className="line" role="tablist">
-        {tabs.map((tab, i) => (
+    <div className="drzac" id="serivce-details">
+      <div className="line" role="tablist" aria-orientation="vertical">
+        {data.map((tab, i) => (
           <button
             key={tab.title}
             type="button"
@@ -30,12 +33,25 @@ function MiddleComponent({ tabs = DEFAULT_TABS }) {
         ))}
       </div>
 
-      {/* Sadržaj izabranog taba — key forsira animaciju pri svakoj promeni */}
       <div className="content-tema">
-        <div className="teme" key={selected} role="tabpanel">
-          <span className="teme-number">{String(selected + 1).padStart(2, "0")}</span>
+        <div className="teme" key={`${pathname}-${selected}`} role="tabpanel">
+          <span className="teme-number">
+            {pad(selected + 1)} / {pad(data.length)}
+          </span>
           <h3 className="teme-title">{active.title}</h3>
           <p className="teme-text">{active.text}</p>
+
+          {active.points?.length > 0 && (
+            <ul className="teme-points">
+              {active.points.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          )}
+
+          <Link to="/contact" className="teme-link">
+            Talk to an expert <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </div>

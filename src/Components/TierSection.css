@@ -2,6 +2,10 @@
    TIERS SECTION — čist, korporativni izgled u paleti sajta
    (iste klase kao do sada, JSX se ne menja)
    ========================================================= */
+   html {
+  scroll-behavior: smooth;
+}
+
 .tiers-section {
   --tiers-blue: #FD5701;
   --tiers-dark: #0F0F0F;

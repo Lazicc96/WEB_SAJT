@@ -70,9 +70,9 @@ function TiersSection({
               <h3 className="tiers-card-title">{tier.title}</h3>
               <p className="tiers-card-lead">{tier.lead}</p>
               <p className="tiers-card-text">{tier.text}</p>
-              <Link to={tier.to} className="tiers-btn">
+              <a href="#serivce-details" className="tiers-btn">
                 {buttonLabel}
-              </Link>
+              </a>
             </article>
           ))}
         </div>
