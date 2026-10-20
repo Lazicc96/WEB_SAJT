@@ -158,10 +158,6 @@ function PortfolioCard({ to, logo, name, text, badge, year }) {
           <h3 className="hs-pcard-title">{name}</h3>
           <p className="hs-pcard-text">{text}</p>
         </span>
-        <span className="hs-pcard-meta">
-          <span className="hs-badge">{badge}</span>
-          <span className="hs-pcard-year">{year}</span>
-        </span>
         <span className="hs-pcard-arrow" aria-hidden="true">
           <ChevronRight />
         </span>
@@ -288,28 +284,25 @@ function HomeSections() {
         <div className="hs-container">
           <Reveal className="hs-cards-grid">
             <PortfolioCard
-  to="/contact"
+  to="/professional-services/External-Network-Pen-Testing"
   logo={<IconCloud/>}
   name="External Network PenTest"
   text="Your external perimeter is your face to the world. We map your digital footprint using advanced OSINT and attack your exposed infrastructure. We look for forgotten subdomains, exposed admin panels, and misconfigured services that give attackers an easy way in."
-  badge="Q2 2026"
-  year="2026"
+
 />
 <PortfolioCard
-  to="/contact"
+  to="/professional-services/Web-Application-Pen-Testing"
   logo={<IconTesting />}
   name="Web Application PenTest"
   text="Automated scanners only find 20% of vulnerabilities. We find the other 80%: the business logic errors that allow data leakage and account takeovers. If you handle PII or payments, this isn't optional. We test per OWASP Top 10 and ASVS standards."
-  badge="Q3 2025"
-  year="2025"
+
 />
 <PortfolioCard
-  to="/contact"
+  to="/professional-services/Cloud-Audit-Assesment"
   logo={<IconProtection />}
   name="Cloude Assesment"
   text="Misconfiguration is the #1 cause of cloud breaches. We manually review your IAM roles, S3 permissions, and Kubernetes clusters to ensure you aren't the next headline. We map findings against CIS Benchmarks and best practices."
-  badge="Q1 2024"
-  year="2024"
+
 />
           </Reveal>
         </div>
