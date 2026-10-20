@@ -943,3 +943,13 @@ body.menu-open {
     width: 100%;
   }
 }
+
+.pro-cat-link.is-coming-soon {
+  color: #8a8a8a; /* sivkasta boja teksta */
+  cursor: default;
+  opacity: 0.7;
+}
+
+.pro-cat-link.is-coming-soon:hover {
+  color: #8a8a8a; /* da ne menja boju na hover kao ostali linkovi */
+}

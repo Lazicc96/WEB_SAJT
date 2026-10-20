@@ -25,7 +25,7 @@ const STICKY_OFFSET = 80;
 const COMPLIANCE_SERVICES = [
   { label: "Fractional CISO (vCISO)", path: "/professional-services/Fractional-Ciso" },
   { label: "Compliance Readiness", path: "/professional-services/Compliance-Readines" },
-  { label: "Remediation Assistance as a Service (Soon)", path: "/professional-services/Remediation-assistance" },
+  { soon:true, label: "Remediation Assistance as a Service (Soon)", path: "/professional-services/Remediation-assistance" },
 ];
 
 function Chevron() {
@@ -379,15 +379,20 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
   </button>
 
   <div className={`mega pro-mega comp-mega ${isCompOpen ? "is-open" : ""}`}>
-    <ul className="pro-cats">
-      {COMPLIANCE_SERVICES.map((link) => (
-        <li key={link.path} className="pro-cat-item">
-          <Link to={link.path} className="pro-cat pro-cat-link" onClick={closeAll}>
-            <span>{link.label}</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
+   <ul className="pro-cats">
+  {COMPLIANCE_SERVICES.map((link) => (
+    <li key={link.path} className="pro-cat-item">
+      <Link
+        to={link.path}
+        className="pro-cat pro-cat-link"
+        onClick={closeAll}
+        style={link.label.includes("Soon") ? { color: "#8a8a8a" } : undefined}
+      >
+        <span>{link.label}</span>
+      </Link>
+    </li>
+  ))}
+</ul>
   </div>
 </li>
 
