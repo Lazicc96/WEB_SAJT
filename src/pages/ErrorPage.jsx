@@ -18,47 +18,34 @@ const ArrowRight = () => (
 export default function ErrorPage() {
     return (
         <>
-            <HeaderComponent HeaderText='I think you have lost'
+            <HeaderComponent HeaderText='Page not found'
                 ruta="/"
-                pageHeaderText="Something unusual has occurred"
+                pageHeaderText="This page doesn't exist or has been moved."
             />
 
             <section className="error-page">
-                <div className="container-default">
+    <div className="container-default">
+        <div className="error-inner">
+            <p className="error-code">404</p>
 
-                    <div className="error-inner">
+            <p className="error-text">
+                We couldn't find the page you're looking for. The link may be
+                broken, or the page may have been moved.
+            </p>
 
-                        <div className="error-code">
-                            <span>4</span>
-                            <span className="error-code-zero">
-                                <span className="error-code-zero-ring"></span>
-                                <span className="error-code-zero-dot"></span>
-                            </span>
-                            <span>4</span>
-                        </div>
+            <div className="error-actions">
+                <Link to="/" className="error-btn error-btn-primary">
+                    <span>Back to home</span>
+                    <span className="error-btn-arrow"><ArrowRight /></span>
+                </Link>
 
-                        <h1 className="error-title">Page not found</h1>
-
-                        <p className="error-text">
-                            The page you are looking for might have been removed,
-                            had its name changed, or is temporarily unavailable.
-                        </p>
-
-                        <div className="error-actions">
-                            <Link to="/" className="error-btn error-btn-primary">
-                                <span>Back to home</span>
-                                <span className="error-btn-arrow"><ArrowRight /></span>
-                            </Link>
-
-                            <Link to="/company-pages/contact" className="error-btn error-btn-outline">
-                                Contact support
-                            </Link>
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
+                <Link to="/contact" className="error-btn error-btn-outline">
+                    Contact us
+                </Link>
+            </div>
+        </div>
+    </div>
+</section>
 
             <FooterComponent />
         </>

@@ -21,6 +21,13 @@ const MOBILE_BREAKPOINT = 991;
 const CLOSE_DELAY = 260;
 const STICKY_OFFSET = 80;
 
+// COMPLIANCE AND ADVISORY dropdown linkovi
+const COMPLIANCE_SERVICES = [
+  { label: "Fractional CISO", path: "/professional-services/Fractional-Ciso" },
+  { label: "Compliance Readiness", path: "/professional-services/Compliance-Readines" },
+  { label: "Remediation Assistance as a Service", path: "/professional-services/Remediation-assistance" },
+];
+
 function Chevron() {
   return (
     <svg className="chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
@@ -39,6 +46,10 @@ function Chevron() {
 function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, linkovanje }) {
   const { pathname } = useLocation();
   const image = getHeaderImage(pathname);
+
+    useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
 
   const PRO_SERVICES = [
     {
@@ -64,13 +75,6 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
         {label:"Security Awareness Training", path:"/professional-services/Sec-Awarenes-Training"}
       ],
     },
-    { key:"Compliance and advisory",
-      label:"Compliance and advisory",
-      links:[
-      {label:"Fractional Ciso",path:"/professional-services/Fractional-Ciso"},
-      {label:"Compliance readines",path:"/professional-services/Compliance-Readines"},
-      {label:"Remediation assistance as a service",path:"/professional-services/Remediation-assistance"}
-    ]},
     {
       key: "incident",
       label: "Incident Response",
@@ -80,9 +84,6 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
       label:"Ditigal Forensic",
       path:"/professional-services/Digital-Forensic"
     },
-    
-
-    
   ];
 
   const navigate = useNavigate();
@@ -90,6 +91,7 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isProOpen, setIsProOpen] = useState(false);
+  const [isCompOpen, setIsCompOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [activeProCategory, setActiveProCategory] = useState("assessments");
   const [mobileProCategory, setMobileProCategory] = useState(null);
@@ -99,16 +101,19 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
 
   const headerRef = useRef(null);
   const proCloseTimer = useRef(null);
+  const compCloseTimer = useRef(null);
   const aboutCloseTimer = useRef(null);
 
   const clearTimers = () => {
     clearTimeout(proCloseTimer.current);
+    clearTimeout(compCloseTimer.current);
     clearTimeout(aboutCloseTimer.current);
   };
 
   const closeDropdowns = () => {
     clearTimers();
     setIsProOpen(false);
+    setIsCompOpen(false);
     setIsAboutOpen(false);
     setMobileProCategory(null);
   };
@@ -167,7 +172,9 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
   const handleProEnter = () => {
     if (isMobile) return;
     clearTimeout(proCloseTimer.current);
+    clearTimeout(compCloseTimer.current);
     clearTimeout(aboutCloseTimer.current);
+    setIsCompOpen(false);
     setIsAboutOpen(false);
     setIsProOpen(true);
   };
@@ -181,9 +188,37 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
   const handleProToggleClick = () => {
     if (isMobile) {
       setIsProOpen((prev) => !prev);
+      setIsCompOpen(false);
       setIsAboutOpen(false);
     } else {
       setIsProOpen(true);
+    }
+  };
+
+  // ---------- COMPLIANCE AND ADVISORY handleri ----------
+  const handleCompEnter = () => {
+    if (isMobile) return;
+    clearTimeout(compCloseTimer.current);
+    clearTimeout(proCloseTimer.current);
+    clearTimeout(aboutCloseTimer.current);
+    setIsProOpen(false);
+    setIsAboutOpen(false);
+    setIsCompOpen(true);
+  };
+
+  const handleCompLeave = () => {
+    if (isMobile) return;
+    clearTimeout(compCloseTimer.current);
+    compCloseTimer.current = setTimeout(() => setIsCompOpen(false), CLOSE_DELAY);
+  };
+
+  const handleCompToggleClick = () => {
+    if (isMobile) {
+      setIsCompOpen((prev) => !prev);
+      setIsProOpen(false);
+      setIsAboutOpen(false);
+    } else {
+      setIsCompOpen(true);
     }
   };
 
@@ -206,7 +241,9 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
     if (isMobile) return;
     clearTimeout(aboutCloseTimer.current);
     clearTimeout(proCloseTimer.current);
+    clearTimeout(compCloseTimer.current);
     setIsProOpen(false);
+    setIsCompOpen(false);
     setIsAboutOpen(true);
   };
 
@@ -220,6 +257,7 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
     if (isMobile) {
       setIsAboutOpen((prev) => !prev);
       setIsProOpen(false);
+      setIsCompOpen(false);
     } else {
       setIsAboutOpen(true);
     }
@@ -229,6 +267,7 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
     setMobileMenuOpen((prev) => {
       if (prev) {
         setIsProOpen(false);
+        setIsCompOpen(false);
         setIsAboutOpen(false);
         setMobileProCategory(null);
       }
@@ -322,12 +361,35 @@ function HeaderComponent({ children, ruta = "/", pageHeaderText, HeaderText, lin
                     </div>
                   </li>
 
-                  {/* ---------- 2. MANAGED SERVICES ---------- */}
-                  <li className="nav-item">
-                    <Link to={linkovanje} className="nav-link" onClick={closeAll}>
-                      <span className="link-animation-wrapper"><span className="link-swap-a">Managed Services</span><span className="link-swap-b" aria-hidden="true">Managed Services</span></span>
-                    </Link>
-                  </li>
+                 {/* ---------- 2. COMPLIANCE AND ADVISORY (DROPDOWN) ---------- */}
+<li
+  className={`nav-item nav-item-comp ${isCompOpen ? "is-open" : ""}`}
+  onMouseEnter={handleCompEnter}
+  onMouseLeave={handleCompLeave}
+>
+  <button
+    type="button"
+    className="nav-toggle"
+    aria-expanded={isCompOpen}
+    aria-haspopup="true"
+    onClick={handleCompToggleClick}
+  >
+    <span>Compliance and Advisory</span>
+    <Chevron />
+  </button>
+
+  <div className={`mega pro-mega comp-mega ${isCompOpen ? "is-open" : ""}`}>
+    <ul className="pro-cats">
+      {COMPLIANCE_SERVICES.map((link) => (
+        <li key={link.path} className="pro-cat-item">
+          <Link to={link.path} className="pro-cat pro-cat-link" onClick={closeAll}>
+            <span>{link.label}</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+</li>
 
                   {/* ---------- 3. ABOUT US ----------
                   <li

@@ -16,57 +16,41 @@ const ArrowRight = () => (
     </svg>
 );
 
-/* ============================================================
-   Podaci — kolone footera (naslov + linkovi)
-   Putanje moraju da se poklapaju sa routerom / HEADER_IMAGES
-   ============================================================ */
 const FOOTER_COLUMNS = [
     {
         title: "Penetration Testing",
         links: [
-            { href: "/professional-services/web-application-pen-testing", label: "Web Application Pen Testing" },
-            { href: "/professional-services/external-network-pen-testing", label: "External Network Pen Testing" },
-            { href: "/professional-services/internal-network-pen-testing", label: "Internal Network Pen Testing" },
-            { href: "/professional-services/llm-ai-pen-testing", label: "LLM & AI Pen Testing" },
-            { href: "/professional-services/social-engineering", label: "Social Engineering" },
-            { href: "/professional-services/red-team-ops", label: "Red Team Ops" },
-            { href: "/professional-services/iot-hardware-hacking", label: "IoT & Hardware Hacking" },
+            { href: "/professional-services/Web-Application-Pen-Testing", label: "Web Application Pen Testing" },
+            { href: "/professional-services/External-Network-Pen-Testing", label: "External Network Pen Testing" },
+            { href: "/professional-services/Internal-Network-Pen-Testing", label: "Internal Network Pen Testing" },
+            { href: "/professional-services/LLM-AI-Pen-Testing", label: "LLM & AI Pen Testing" },
+            { href: "/professional-services/Social-Engineering", label: "Social Engineering" },
+            { href: "/professional-services/Red-Team-Ops", label: "Red Team Ops" },
+            { href: "/professional-services/Iot-Hardware-Hacking", label: "IoT & Hardware Hacking" },
         ],
     },
     {
         title: "Assessments & Training",
         links: [
-            { href: "/professional-services/vulnerability-assesment", label: "Vulnerability Assessment" },
-            { href: "/professional-services/cloud-audit-assesment", label: "Cloud Audit Assessment" },
-            { href: "/professional-services/network-assessment", label: "Network Assessment" },
-            { href: "/professional-services/api-security-assessment", label: "API Security Assessment" },
-            { href: "/professional-services/physical-security-systems-assessment", label: "Physical Security Assessment" },
-            { href: "/professional-services/sec-awarenes-training", label: "Security Awareness Training" },
-            { href: "/professional-services/training-user-awareness", label: "User Awareness Training" },
-            { href: "/professional-services/training-phishing-exercises", label: "Phishing Exercises" },
-            { href: "/professional-services/training-tabletop-exercise", label: "Tabletop Exercise" },
+            { href: "/professional-services/VulnerAbility-Assesment", label: "Vulnerability Assessment" },
+            { href: "/professional-services/Cloud-Audit-Assesment", label: "Cloud Audit Assessment" },
+            { href: "/professional-services/Sec-Awarenes-Training", label: "Security Awareness Training" },
         ],
     },
     {
         title: "Compliance & Response",
         links: [
-            { href: "/professional-services/fractional-ciso", label: "Fractional CISO" },
-            { href: "/professional-services/vciso-service", label: "vCISO Service" },
-            { href: "/professional-services/compliance-readines", label: "Compliance Readiness" },
-            { href: "/professional-services/skyrocket-accelerated-gap-analysis", label: "Accelerated Gap Analysis" },
-            { href: "/professional-services/policy-development", label: "Policy Development" },
-            { href: "/professional-services/remediation-assistance", label: "Remediation Assistance" },
-            { href: "/professional-services/solution-implementation-cybersecurity", label: "Solution Implementation" },
-            { href: "/professional-services/incident-response", label: "Incident Response" },
-            { href: "/professional-services/compromise-assessment", label: "Compromise Assessment" },
-            { href: "/professional-services/digital-forensic", label: "Digital Forensics" },
+            { href: "/professional-services/Fractional-Ciso", label: "Fractional CISO" },
+            { href: "/professional-services/Compliance-Readines", label: "Compliance Readiness" },
+            { href: "/professional-services/Remediation-assistance", label: "Remediation Assistance" },
+            { href: "/professional-services/Incident-Response", label: "Incident Response" },
+            { href: "/professional-services/Digital-Forensic", label: "Digital Forensics" },
         ],
     },
     {
         title: "Company",
         links: [
             { href: "/", label: "Home" },
-            { href: "/managed-services", label: "Managed Services" },
             { href: "/contact", label: "Contact Us" },
         ],
     },
@@ -118,7 +102,7 @@ export default function FooterComponent() {
                     </p> */}
 
                     <div className="anim-item">
-                        <Link to="/get-started" className="primary-button">
+                        <Link to="/contact" className="primary-button">
                             <div className="button-content-flex gap-0">
                                 <div>Get started</div>
                                 <div className="button-icon-wrapper">
@@ -150,7 +134,7 @@ export default function FooterComponent() {
                 {/* ============ BOTTOM — copyright ============ */}
                 <div className="footer-bottom anim-item">
                     <p className="footer-copyright">
-                        Copyright © Investflow&nbsp;&nbsp;|&nbsp;&nbsp;Designed and developed by{" "}
+                        Copyright © Tensilesecurity&nbsp;&nbsp;|&nbsp;&nbsp;Designed and developed by{" "}
                         <Link to="/" className="footer-copyright-link">Lazic</Link>
                     </p>
                 </div>
