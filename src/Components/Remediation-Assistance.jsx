@@ -7,7 +7,7 @@ function RemediationAssistance(){
 
     return (
     <>
-            <HeaderComponent HeaderText={'Current page is under construction...'} pageHeaderText={'Coming soon...'}/>
+            <HeaderComponent HeaderText={'Service under construction...'} pageHeaderText={'Coming soon...'}/>
             <Strelica/>
             <FooterComponent/>
     </>)

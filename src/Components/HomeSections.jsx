@@ -290,24 +290,24 @@ function HomeSections() {
             <PortfolioCard
   to="/contact"
   logo={<IconCloud/>}
-  name="Converra"
-  text="Full-spectrum external footprint mapping and attack surface analysis. We identified exposed assets before malicious actors could exploit them."
+  name="External Network PenTest"
+  text="Your external perimeter is your face to the world. We map your digital footprint using advanced OSINT and attack your exposed infrastructure. We look for forgotten subdomains, exposed admin panels, and misconfigured services that give attackers an easy way in."
   badge="Q2 2026"
   year="2026"
 />
 <PortfolioCard
   to="/contact"
   logo={<IconTesting />}
-  name="Nexora"
-  text="In-depth web application penetration testing and secure code review. We safely exploited critical flaws prior to their major product launch."
+  name="Web Application PenTest"
+  text="Automated scanners only find 20% of vulnerabilities. We find the other 80%: the business logic errors that allow data leakage and account takeovers. If you handle PII or payments, this isn't optional. We test per OWASP Top 10 and ASVS standards."
   badge="Q3 2025"
   year="2025"
 />
 <PortfolioCard
   to="/contact"
   logo={<IconProtection />}
-  name="Syncell"
-  text="Cloud infrastructure audit and zero-trust policy implementation. Hardened their environment to meet strict financial data compliance standards."
+  name="Cloude Assesment"
+  text="Misconfiguration is the #1 cause of cloud breaches. We manually review your IAM roles, S3 permissions, and Kubernetes clusters to ensure you aren't the next headline. We map findings against CIS Benchmarks and best practices."
   badge="Q1 2024"
   year="2024"
 />

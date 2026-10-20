@@ -23,9 +23,9 @@ const STICKY_OFFSET = 80;
 
 // COMPLIANCE AND ADVISORY dropdown linkovi
 const COMPLIANCE_SERVICES = [
-  { label: "Fractional CISO", path: "/professional-services/Fractional-Ciso" },
+  { label: "Fractional CISO (vCISO)", path: "/professional-services/Fractional-Ciso" },
   { label: "Compliance Readiness", path: "/professional-services/Compliance-Readines" },
-  { label: "Remediation Assistance as a Service", path: "/professional-services/Remediation-assistance" },
+  { label: "Remediation Assistance as a Service (Soon)", path: "/professional-services/Remediation-assistance" },
 ];
 
 function Chevron() {
